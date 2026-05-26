@@ -1,0 +1,68 @@
+系统运行说明文档
+项目名称：绿伴校园 —— 绿植领养与交换系统
+开发技术：Java + SSM + MySQL + JSP
+开发工具：IDEA / Eclipse + Tomcat 8.5 + MySQL 5.7
+
+一、项目简介
+本项目是基于SSM框架开发的校园绿植共享平台，面向高校学生与管理员提供服务。用户可在线申请绿植领养、发布闲置绿植交换；管理员可审核申请、管理绿植与用户数据，实现校园绿植资源的高效流转。
+
+二、运行环境要求
+- 操作系统：Windows / macOS / Linux
+- JDK 版本：JDK 1.8 及以上
+- MySQL 版本：MySQL 5.7 及以上
+- Tomcat 版本：Tomcat 8.5 及以上
+- 浏览器：Chrome / Edge / Firefox（推荐 Chrome）
+
+三、数据库配置步骤
+1. 创建数据库
+打开 MySQL 客户端，执行SQL创建数据库：
+CREATE DATABASE green_companion DEFAULT CHARSET utf8mb4;
+
+2. 导入数据库文件
+执行项目根目录下的 green_companion.sql 文件，完成表结构与初始数据导入。
+
+3. 修改项目数据库连接配置
+打开项目 src/main/resources/db.properties 文件，修改数据库连接信息：
+jdbc.driver=com.mysql.cj.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/green_companion?useSSL=false&serverTimezone=UTC
+jdbc.username=你的数据库用户名
+jdbc.password=你的数据库密码
+
+四、项目部署与启动
+1. 项目导入
+使用 IDEA/Eclipse 导入项目，等待 Maven 依赖加载完成。
+2. Tomcat 配置
+- 配置 Tomcat 服务器，添加 GreenCompanionSSM 项目部署
+- 设置上下文路径为 /GreenCompanionSSM
+3. 启动项目
+启动 Tomcat 服务器，控制台无报错即为启动成功。
+
+五、系统访问地址与账号
+- 用户端首页：http://localhost:8080/GreenCompanionSSM/plant/toBrowse
+- 管理员登录页：http://localhost:8080/GreenCompanionSSM/admin/login
+- 默认管理员账号：admin
+- 默认管理员密码：123456
+
+六、系统核心功能说明
+1. 用户端功能
+- 账号注册与登录
+- 绿植领养申请与进度查看
+- 闲置绿植发布与交换
+- 个人中心（收藏、消息通知）
+
+2. 管理员端功能
+- 领养/交换申请审核
+- 绿植信息管理（新增、编辑、下架）
+- 用户账号管理
+- 数据统计与公告发布
+
+七、常见问题解决
+1. 数据库连接失败
+- 检查 MySQL 服务是否启动
+- 核对 db.properties 中的用户名、密码、端口号是否正确
+2. Tomcat 启动失败
+- 检查 8080 端口是否被占用，可修改 Tomcat 配置文件更换端口
+- 确认项目部署路径与上下文路径设置正确
+3. 页面 404 错误
+- 确认访问地址与上下文路径一致
+- 检查项目是否成功部署到 Tomcat

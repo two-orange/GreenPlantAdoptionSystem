@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 1. 扫描Controller层 -->
+    <context:component-scan base-package="com.yang.controller"/>
+
+    <!-- 2. 开启SpringMVC注解驱动（支持@RequestMapping、@ResponseBody等） -->
+    <mvc:annotation-driven/>
+
+    <!-- 3. 核心：配置视图解析器（关键！让SpringMVC找到JSP页面） -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- JSP页面所在的目录：对应WEB-INF/views -->
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <!-- JSP页面的后缀：比如return "list" → 拼接成/WEB-INF/views/list.jsp -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 4. 放行静态资源（比如Bootstrap的CSS文件） -->
+    <mvc:default-servlet-handler/>
+</beans>
